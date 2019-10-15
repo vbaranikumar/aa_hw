@@ -5,7 +5,7 @@
     organization: Default
     scm_update_on_launch: False
     scm_type: git
-    scm_url: https://github.com/redhat-gpte-devopsautomation/ansible_advance_homework
+    scm_url: https://github.com/vbaranikumar/aa_hw.git
     scm_update_cache_timeout: 60
     tower_host: tower1.{{tower_GUID}}.example.opentlc.com
     state: present
