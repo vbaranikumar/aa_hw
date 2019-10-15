@@ -1,5 +1,11 @@
----
 # tasks file for roles/osp-instance-delete
-  - name: Fetch Instance Info
-  - name: Delete instances
-   
+- name: Delete instances
+  os_server:
+    name: "{{ item }}"
+    region_name: RegionOne
+    state: absent
+  loop:
+    - app1
+    - app2
+    - frontend
+    - db

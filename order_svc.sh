@@ -73,7 +73,7 @@ if [ -z "${catalogID}" ]; then
     echo "Catalog '${catalogName}' not found" >&2
     exit 2
 fi
-
+echo $uri
 itemID=$(curl -s -H "X-Auth-Token: $tok" \
               -H "Content-Type: application/json" \
               -X GET \
