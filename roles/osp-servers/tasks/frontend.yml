@@ -1,6 +1,8 @@
 ---
 
 # tasks file for osp.servers
+- name: Display frontend variables
+  debug: var=osp_servers.frontend
 - name: Creates frontend server instance and attaches a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
