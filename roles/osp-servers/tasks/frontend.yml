@@ -4,9 +4,13 @@
 - name: Display frontend variables
   debug: var=osp_servers.frontend
 
-- name: Display frontend variables
-  debug: var=group "{{ osp_servers.frontend.meta[0] }}" deployment_name "{{ osp_servers.frontend.meta[0]['deployment_name'] }}"
-  
+- name: Display frontend variables - group
+  debug: var=osp_servers.frontend.meta[0]
+
+- name: Display frontend variables - deployment_name
+  debug: var=osp_servers.frontend.meta[0]['deployment_name']
+ 
+ 
 - name: Creates frontend server instance and attaches a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
