@@ -1,26 +1,13 @@
 ---
 
 # tasks file for osp.servers
-- name: Display frontend variables
-  debug: var=osp_servers.frontend
-
-- name: Display frontend group
-  debug: var=osp_servers.frontend.meta[0]['group']
-
-- name: Display with_items
-  debug: msg="{{item}} Values"
-  with_items: "{{osp_servers.frontend.meta[0]}}"  
-
-- name: Display frontend deployment_name
-  debug: var=osp_servers['frontend']['meta'][0]['deployment_name']
- 
  
 - name: Creates frontend server instance and attaches a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
     name: "{{ osp_servers.frontend.name }}"
     image: "{{ osp_servers.frontend.image }}"
-    meta: group={{ osp_servers.frontend.meta.group }},deployment_name={{ osp_servers.frontend.meta.deployment_name }} 
+    meta: group={{ osp_servers.frontend.meta[0]['group'] }},deployment_name={{ osp_servers['frontend']['meta'][0]['deployment_name'] }} 
     flavor: "{{ frontend.flavor }}"
     security_groups: "{{ osp_servers.frontend.security_group }}"
     key_name: "{{ osp_servers.frontend.key_name }}"
