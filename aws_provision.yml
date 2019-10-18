@@ -2,6 +2,9 @@
 - hosts: workstation
   become: true
   gather_facts: false
+  vars:
+  - param_repo_base: http://www.opentlc.com/download/ansible_bootcamp
+
   tasks:
     - name: create bin directory
       file:
@@ -26,8 +29,8 @@
     - name: create credentials
       copy:
         content: |
-          export username={{ param_user }}
-          export password={{ param_password }}
+          export username="{{param_user}}"
+          export password="{{param_password}}"
           export uri=https://labs.opentlc.com
         dest: /root/credential.rc
         mode: 0755

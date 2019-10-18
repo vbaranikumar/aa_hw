@@ -2,7 +2,7 @@
 # vars file for roles/config-tower
 org_name: Default 
 scm_branch: master 
-scm_url: "{{ github_repo }}"
+scm_url: "{{ GITHUB_REPO }}"
 proj_name: "Homework Assignment"
 user_name: admin 
 password: r3dh4t1!
@@ -15,7 +15,7 @@ workflow_template_name: cicd_workflow
 job_template_name_osp_instances: "Provision QA Env"
 osp_instances_playbook: site-osp-instances.yml
 group_name: workstation
-host_name: workstation-{{osp_GUID}}.rhpds.opentlc.com
+host_name: workstation-{{OSP_GUID}}.rhpds.opentlc.com
 job_template_name_3tier_app: "3tier app deployment on QA Env"
 app_deploy_playbook: site-3tier-app.yml
 vault_name: yum_repo_vault
@@ -41,4 +41,3 @@ job_template_name_3tier_app_aws: "3 tier app on Prod"
 aws_cred_name: "Creds for AWS instances"
 job_template_smoke_aws: "Smoke test Prod env"
 aws_smoke_app_playbook: site-smoketest-aws.yml
-

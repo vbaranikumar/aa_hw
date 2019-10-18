@@ -1,16 +1,15 @@
 ---
 
 # tasks file for osp.servers
- 
 - name: Creates frontend server instance and attaches a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
-    name: "{{ osp_servers.frontend.name }}"
-    image: "{{ osp_servers.frontend.image }}"
-    meta: group={{ osp_servers.frontend.meta[0]['group'] }},deployment_name={{ osp_servers['frontend']['meta'][0]['deployment_name'] }} 
-    flavor: "{{ osp_servers.frontend.flavor }}"
-    security_groups: "{{ osp_servers.frontend.security_group }}"
-    key_name: "{{ osp_servers.frontend.key_name }}"
+    name: "{{ frontend.name }}"
+    image: "{{ frontend.image }}"
+    meta: group={{ frontend.meta_group }},deployment_name={{ frontend.meta_deployment_name }} 
+    flavor: "{{ frontend.flavor }}"
+    security_groups: "{{ frontend.security_group }}"
+    key_name: "{{ frontend.key_name }}"
     wait: yes
     nics:
     - net-name: int_network
@@ -20,22 +19,17 @@
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
       curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
       cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
-  register: instance_ip   
-
 
 - name: Add floating IP to frontend server
   os_floating_ip:
     cloud: ospcloud
-    server: "{{ osp_servers.frontend.name }}"
+    server: "{{ frontend.name }}"
     state: present
     reuse: yes
     network: ext_network
     wait: true
     timeout: 180
   register: instance_floating_ip
-
-- name: Show "{{ instance_ip }}" public IP
-  debug: var=instance_floating_ip.floating_ip.floating_ip_address
 
 - name: Wait for frontend server to become available
   wait_for:
