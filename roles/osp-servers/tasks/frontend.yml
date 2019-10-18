@@ -26,7 +26,7 @@
 - name: Add floating IP to frontend server
   os_floating_ip:
     cloud: ospcloud
-    server: "{{ frontend.name }}"
+    server: "{{ osp_servers.frontend.name }}"
     state: present
     reuse: yes
     network: ext_network
