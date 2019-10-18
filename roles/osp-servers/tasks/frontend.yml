@@ -7,6 +7,10 @@
 - name: Display frontend group
   debug: var=osp_servers.frontend.meta[0]
 
+- name: Display with_items
+  debug: msg="{{item.group}}'s hashed pw is {{item.deployment_name}}"
+  with_items: "{{osp_servers.frontend.meta[0]}}"  
+
 - name: Display frontend deployment_name
   debug: var=osp_servers['frontend']['meta'][0]['deployment_name']
  
