@@ -5,10 +5,10 @@
   debug: var=osp_servers.frontend
 
 - name: Display frontend group
-  debug: var=osp_servers.frontend.meta[0]
+  debug: var=osp_servers.frontend.meta[0]['group']
 
 - name: Display with_items
-  debug: msg="{{item.group}}'s hashed pw is {{item.deployment_name}}"
+  debug: msg="{{item['group']}}'s hashed pw is {{item['deployment_name']}}"
   with_items: "{{osp_servers.frontend.meta[0]}}"  
 
 - name: Display frontend deployment_name
