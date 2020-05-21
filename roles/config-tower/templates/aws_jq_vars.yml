@@ -1,3 +1,0 @@
-param_user: {{OPENTLC_LOGIN}}
-param_password: {{OPENTLC_PASSWORD}}
-param_repo_base: {{param_repo_base}}

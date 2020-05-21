@@ -1,9 +1,0 @@
-- hosts: localhost
-  gather_facts: false 
-  become: yes 
-  pre_tasks:
-  - set_fact:
-      OSP_GUID: "{{ lookup('env','OSP_GUID') }}"
-    
-  roles:
-    - config-tower
